@@ -1,0 +1,16 @@
+.button {
+  border: 2px solid white;
+  font: 1.1429rem/1rem 'NeueMachina', sans-serif;
+  background: none;
+  box-shadow: none;
+  color: white;
+  padding: 1.4286rem 1.7857rem 1.1429rem;
+  transition: opacity 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 75%;
+    background: white 40%;
+    color: black;
+  }
+}
