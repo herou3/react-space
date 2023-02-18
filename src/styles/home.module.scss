@@ -1,0 +1,7 @@
+.section {
+  height: 100vh;
+  &Main {
+    background: url(/bg/screen_1_bg.jpg) center no-repeat no-repeat;
+    background-size: cover;
+  }
+}
