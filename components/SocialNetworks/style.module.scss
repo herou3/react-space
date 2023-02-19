@@ -1,6 +1,7 @@
 .socialNetworks {
   display: flex;
   gap: 3vw;
+  transition: all 0.3s;
 
   &Link {
     color: white;
@@ -15,6 +16,7 @@
     &:hover,
     &:visited {
       color: white;
+      opacity: 0.7;
     }
   }
 
