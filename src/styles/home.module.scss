@@ -1,17 +1,45 @@
 .section {
   height: 100vh;
-  padding: 2.1429rem 2.8571rem;
+  padding: 2.1429rem 6.8571rem;
   box-sizing: border-box;
   min-height: 580px;
 
   &Main {
+    justify-content: center;
     background: url(/bg/screen_1_bg.jpg) center no-repeat no-repeat;
+  }
+
+  &Earth {
+    background: url(/bg/earth_2_bg.jpg) center no-repeat no-repeat;
+  }
+
+  &Main,
+  &Earth {
     background-size: cover;
     display: flex;
     align-items: center;
-    justify-content: center;
     padding-top: 7.1429rem;
     padding-bottom: 7.1429rem;
+  }
+
+  &RoadMap {
+
+    position: relative;
+    background: rgb(30,32,44);
+    background: linear-gradient(90deg, rgba(30,32,44,1) 0%, rgba(24,21,27,1) 100%, rgba(0,212,255,1) 100%);
+
+    &::before {
+      content: '';
+      height: 150px;
+      width: 100%;
+      display: block;
+      position: absolute;
+      top: -10.7143rem;
+      left: 0;
+      z-index: 0;
+      background: rgb(30,32,44);
+      background: linear-gradient(0deg, rgba(30,32,44,1) 0%, rgba(30,32,44,0) 100%);
+    }
   }
 }
 
