@@ -1,57 +1,142 @@
 .button {
-  border: none;
-  font: 1.1429rem/1rem 'NeueMachina', sans-serif;
-  background: none;
-  box-shadow: none;
-  color: white;
-  padding: 1.4286rem 1.7857rem 1.1429rem;
-  transition: opacity 0.3s;
+  --color: #fff;
+  --bg: #fff;
+  --border-width: 0.2em;
+  --corner: 0.4em;
+  --corner-size: 0.4em;
+  --corner-height: 0.4em;
+
+  font-size: 22px;
+  width: 280px;
+  margin: 0 auto;
   cursor: pointer;
+  background: transparent;
+  padding: 1.1em 1.5em;
+  border: 0;
   position: relative;
-  height: 4rem;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  color: var(--color);
 
-  &:hover {
-    opacity: 75%;
-    background: white 40%;
-    color: black;
+  clip-path: polygon(
+    0 var(--corner-height),
+    calc(100% - (var(--corner-size) * 7)) var(--corner-height),
+    calc(100% - (var(--corner-size) * 7 - var(--corner))) 0,
+    100% 0,
+    100% 100%,
+    calc(var(--corner-size) * 5) 100%,
+    calc(var(--corner-size) * 5 - var(--corner))
+      calc(100% - var(--corner-height)),
+    0 calc(100% - var(--corner-height))
+  );
+  transition: color 0.2s linear 0.1s;
 
-    .buttonArrow {
-      fill: black;
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg);
+    z-index: -2;
 
-    .buttomLine {
-      fill: white;
-      stroke: black;
+    clip-path: polygon(
+      0 var(--corner-height),
+      calc(100% - (var(--corner-size) * 7)) calc(var(--corner-height)),
+      calc(100% - (var(--corner-size) * 7 - var(--corner))) 0,
+      100% 0,
+      100% 100%,
+      calc(var(--corner-size) * 5) 100%,
+      calc(var(--corner-size) * 5 - var(--corner))
+        calc(100% - var(--corner-height)),
+      0 calc(100% - var(--corner-height)),
+      0 calc(100% - (var(--corner-height) + var(--border-width))),
+      calc(var(--corner-size) * 3)
+        calc(100% - (var(--corner-height) + var(--border-width))),
+      calc(var(--corner-size) * 5 - var(--corner) + var(--border-width) / 2)
+        calc(100% - (var(--corner-height) + var(--border-width))),
+      calc(var(--corner-size) * 5 + var(--border-width) / 2)
+        calc(100% - var(--border-width)),
+      calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+      calc(100% - var(--border-width)) var(--border-width),
+      calc(
+          100% -
+            (var(--corner-size) * 7 - var(--corner) - var(--border-width) / 2)
+        )
+        var(--border-width),
+      calc(100% - (var(--corner-size) * 7 - var(--border-width) / 2))
+        calc(var(--corner-height) + var(--border-width)),
+      0 calc(var(--corner-height) + var(--border-width)),
+      0 calc(100% - (var(--corner-height) + var(--border-width))),
+      var(--border-width)
+        calc(100% - (var(--corner-height) + var(--border-width))),
+      var(--border-width)
+        calc(100% - (var(--corner-height) + var(--border-width))),
+      var(--border-width) calc(var(--corner-height) + var(--border-width)),
+      0 calc(var(--corner-height) + var(--border-width))
+    );
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg);
+    z-index: -1;
+    width: 100%;
+    transform: scale(0);
+    transition: transform 0.3s linear;
+  }
+
+  @media (hover) {
+    &:hover {
+      --color: #000;
+      transition: color 0.3s linear;
+
+      &::after {
+        transform: scale(1);
+      }
+
+      span {
+        &::before,
+        &::after {
+          transition: border-color 0.3s linear 0.2s;
+        }
+      }
     }
   }
 
-  &Border {
-    &Left {
+  span {
+    &::before,
+    &::after {
+      content: "";
       position: absolute;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      height: 4rem;
+
+      width: 0;
+      height: 0;
+      border-style: solid;
+
+      transition: border-color 0.15s linear;
+    }
+    &::before {
+      top: calc(var(--corner-height) + var(--border-width) + 2px);
+      left: calc(var(--border-width) + 2px);
+      border-width: calc(var(--corner-height) + 0.08em)
+        calc(var(--corner-height) + 0.08em) 0 0;
+      border-color: var(--color) transparent transparent transparent;
     }
 
-    &Right {
-      position: absolute;
-      z-index: 0;
-      right: 0;
-      top: 0;
-      height: 4rem; 
+    &::after {
+      bottom: calc(var(--border-width) + 2px);
+      right: calc(var(--border-width) + 2px);
+      border-width: 0 0 calc(var(--corner-height) + 0.08em)
+        calc(var(--corner-height) + 0.08em);
+      border-color: transparent transparent var(--color) transparent;
     }
-  }
-
-  &Arrow {
-    transition: all 0.3s;
-    fill:#fff;
-  }
-
-  &Line {
-    transition: all 0.3s;
-    fill: none;
-    stroke: #fff;
-    stroke-width:2px;
   }
 }
